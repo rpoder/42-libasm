@@ -3,11 +3,11 @@
 /*                                                        :::      ::::::::   */
 /*   libasm.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 16:38:43 by rpoder            #+#    #+#             */
-/*   Updated: 2023/09/06 17:20:47 by rpoder           ###   ########.fr       */
+/*   Updated: 2023/09/11 16:45:27 by ronanpoder       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char test(char*i);
+char ft_strlen(char*i);

@@ -1,7 +1,7 @@
-global test
+global ft_strlen
 
 section .text
-test:
+ft_strlen:
 	xor rax, rax
 	cmp byte [rdi], 0
 	jne	loop

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ronanpoder <ronanpoder@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 15:51:49 by rpoder            #+#    #+#             */
-/*   Updated: 2023/09/06 17:46:31 by rpoder           ###   ########.fr       */
+/*   Updated: 2023/09/11 16:45:29 by ronanpoder       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int main()
 {
-	printf("%d\n", test("coucou"));
+	printf("%d\n", ft_strlen("coucou"));
 	return (0);
 }
 
