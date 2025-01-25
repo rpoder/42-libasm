@@ -6,7 +6,7 @@
 /*   By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 15:51:49 by rpoder            #+#    #+#             */
-/*   Updated: 2023/09/12 18:21:52 by rpoder           ###   ########.fr       */
+/*   Updated: 2025/01/25 11:57:12 by rpoder           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <errno.h>
+#include <fcntl.h>
 
 void test_strcpy(char *src)
 {
@@ -24,6 +25,7 @@ void test_strcpy(char *src)
 	printf("strcpy = |%s|\n", strcpy(dest, src));
 	memset(dest, '#', 10);
 	printf("ft_strcpy = |%s|\n", ft_strcpy(dest, src));
+	free(dest);
 }
 
 void test_strlen(char *str)
@@ -40,13 +42,61 @@ void test_strcmp(const char *s1, const char *s2)
 
 void test_write(const char *s1)
 {
+	// test 1: error showing errno
+	printf("------------test 1\n");
 	printf("%ld\n", write(-1, s1, strlen(s1)));
 	printf("errno = %d\n", errno);
 	errno = 0;
-	printf("errno = %d\n", errno);
-
+	printf("resetting errno = %d\n", errno);
 	printf("%ld\n", ft_write(-1, s1, strlen(s1)));
 	printf("errno = %d\n", errno);
+
+	// test 2: working
+	printf("------------test 2\n");
+	printf("%ld\n", write(1, s1, strlen(s1)));
+	printf("%ld\n", ft_write(1, s1, strlen(s1)));
+}
+
+void test_read()
+{
+	size_t	chars_to_read;
+	char	*file_path;
+	char	buf[250];
+	int		fd;
+
+	file_path = "./README.md";
+	chars_to_read = 250;
+	fd = open(file_path, O_RDONLY);
+	memset(buf, 0, 250);
+
+	printf("%zd\n", read(fd, buf, chars_to_read));
+	buf[chars_to_read - 1] = '\0';
+	printf("res = %s\n", buf);
+	printf("errno = %d\n", errno);
+
+	close(fd);
+	fd = open(file_path, O_RDONLY);
+
+	errno = 0;
+	printf("errno = %d\n", errno);
+	printf("%zd\n", ft_read(fd, buf, chars_to_read));
+	printf("res = %s\n", buf);
+	printf("errno = %d\n", errno);
+	close(fd);
+}
+
+void test_strdup() {
+	char *str;
+	// test 1
+	printf("------------test 1\n");
+	str = strdup("hello42\0");
+	printf("%p\n",str);
+	printf("%s\n",str);
+	free(str);
+	str = ft_strdup("hello42");
+	printf("%p\n",str);
+	printf("%s\n",str);
+	free(str);
 }
 
 int main()
@@ -76,6 +126,16 @@ int main()
 	printf("----------------------------write\n");
 	{
 		test_write("fcoucou\n");
+	}
+
+	printf("----------------------------read\n");
+	{
+		test_read();
+	}
+
+		printf("----------------------------strdup\n");
+	{
+		test_strdup();
 	}
 
 	return (0);

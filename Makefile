@@ -6,7 +6,7 @@
 #    By: rpoder <rpoder@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/11 15:22:15 by ronanpoder        #+#    #+#              #
-#    Updated: 2023/09/12 18:18:11 by rpoder           ###   ########.fr        #
+#    Updated: 2025/01/25 12:08:08 by rpoder           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ SRCS =	./src/ft_strlen.s \
 		./src/ft_strcpy.s \
 		./src/ft_strcmp.s \
 		./src/ft_write.s \
+		./src/ft_read.s \
+		./src/ft_strdup.s \
 
 OBJS = ${SRCS:.s=.o}
 
@@ -34,13 +36,14 @@ ${NAME}: ${OBJS}
 	${AS} ${ASFLAGS} $< -o $@
 
 test: ${NAME}
-	cc main.c ${NAME}
+	cc ${CFLAGS} main.c ${NAME} -o test-libasm
 
 clean:
 	rm -f ${OBJS}
 
 fclean: clean
 	rm -f ${NAME}
+	rm -f test-libasm
 
 re: fclean
 	${MAKE} all
